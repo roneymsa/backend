@@ -1,13 +1,8 @@
 const express = require('express');
+const routes = require('./routes');
 
 const server = express();
 
-// GET, POST, PUT, DELETE
-
-server.get('/', (req, res) => {
-    //return res.send('Hello World');
-    //return res.json(`Hello ${req.query.name}`);
-    return res.json({message:`Hello ${req.query.name}`});
-});
+server.use(routes);
 
 server.listen(3333);
