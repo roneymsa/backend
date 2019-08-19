@@ -2,18 +2,24 @@ const express = require('express');
 
 const routes = express.Router();
 
-// GET, POST, PUT, DELETE
+const DevController = require('./controllers/DevController');
 
-routes.get('/', (req, res) => {
-    //return res.send('Hello World');
-    //return res.json(`Hello ${req.query.name}`);
-    return res.json({message:`Olá ${req.query.name}, tudo bem com você?`});
-});
+const LikeController = require('./controllers/LikeController');
 
-routes.post('/devs', (req, res) =>{
+const DislikeController = require('./controllers/DislikeController');
 
-    console.log(req.body);
-    return res.json(req.body);
-})
+routes.get('/devs', DevController.index);
+routes.post('/devs', DevController.store);
+routes.post('/devs/:devId/likes', LikeController.store);
+routes.post('/devs/:devId/dislikes', DislikeController.store);
 
 module.exports = routes;
+
+
+// GET, POST, PUT, DELETE
+
+//routes.get('/', (req, res) => {
+    //return res.send('Hello World');
+    //return res.json(`Hello ${req.query.name}`);
+    //return res.json({message:`Olá ${req.query.name}, tudo bem com você?`});
+//});
